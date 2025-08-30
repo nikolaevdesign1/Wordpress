@@ -1,0 +1,52 @@
+/* Add to functions.php file to create new post type in Wordpress admin panel */
+
+<?php 
+add_action( 'init', 'register_post_types' );
+
+function register_post_types(){
+
+	register_post_type( 'Name_post_type', [
+		'taxonomies' => [], // post related taxonomies
+		'label'  => null,
+		'labels' => [
+			'name'              => 'Name_post_type', // name for the post type.
+			'singular_name'     => 'Name_post_type', // name for single post of that type.
+			'add_new'           => 'Add Name_post_type', // to add a new post.
+			'add_new_item'      => 'Adding Name_post_type', // title for a newly created post in the admin panel.
+			'edit_item'         => 'Edit Name_post_type', // for editing post type.
+			'new_item'          => 'New Name_post_type', // new post's text.
+			'view_item'         => 'See Name_post_type', // for viewing this post type.
+			'search_items'      => 'Search Name_post_type', // search for these post types.
+			'not_found'         => 'Not Found', // if search has not found anything.
+			'parent_item_colon' => '', // for parents (for hierarchical post types).
+			'menu_name'         => 'Name_post_type', // menu name.
+		],
+		'description'         => '',
+		'public'              => true,
+		//'publicly_queryable'  => null, // depends on public
+		//'exclude_from_search' => null, // depends on public
+		//'show_ui'             => null, // depends on public
+		//'show_in_nav_menus'   => null, // depends on public
+		'show_in_menu'        => null, // whether to in admin panel menu
+		//'show_in_admin_bar'   => null, // depends on show_in_menu.
+		'show_in_rest'        => null, // Add to REST API. WP 4.7.
+		'rest_base'           => null, // $post_type. WP 4.7.
+		'menu_position'       => null,
+		'menu_icon'           => null,
+		//'capability_type'   => 'post',
+		//'capabilities'      => 'post', // Array of additional rights for this post type.
+		//'map_meta_cap'      => null, // Set to true to enable the default handler for meta caps.
+		'hierarchical'        => false,
+		'supports'            => [ 'title', 'editor' ], // [ 'title', 'editor', 'author',
+														//   'thumbnail', 'excerpt', 'trackbacks',
+														//   'custom-fields', 'comments', 'revisions',
+														//   'page-attributes', 'post-formats' ]
+		'has_archive'         => false,
+		'rewrite'             => true,
+		'query_var'           => true,
+	] );
+
+}
+
+?>
+
