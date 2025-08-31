@@ -1,0 +1,63 @@
+<?php
+    $args = array(
+        'post_type' => '',
+        'posts_per_page' => 4
+    );
+    $loop = new WP_Query($args);
+    while($loop->have_posts()) : $loop->the_post();
+		$post_ID = get_the_ID() ?>
+			<a href = "<?php echo get_permalink();?>">
+        <?php echo get_the_post_thumbnail()?>
+        <?php the_title('');?>
+        <?php the_content('');?>
+      </a>
+						
+                       	
+<?php 
+endwhile;
+wp_reset_postdata();
+?>
+			
+
+/*
+Param for massive $args
+// Create arguments for WP_Query
+$args = array(
+    // 'post_type' defines which post type to query.
+    // In this case we are selecting posts from a custom post type called "tours".
+    'post_type'      => 'tours',
+
+    // 'posts_per_page' sets how many posts to display.
+    // Here we limit it to 5 posts.
+    'posts_per_page' => 5,
+
+    // 'orderby' specifies the field used for sorting the results.
+    // Here we sort by the publish date.
+    'orderby'        => 'date',
+
+    // 'order' defines the sort direction: 'ASC' = ascending, 'DESC' = descending.
+    // We choose 'DESC' to display the latest posts first.
+    'order'          => 'DESC',
+
+    // 'tax_query' allows filtering posts by taxonomy terms.
+    // Here we filter by the taxonomy "destination" with the term "europe".
+    'tax_query'      => array(
+        array(
+            'taxonomy' => 'destination', // taxonomy name
+            'field'    => 'slug',        // we search by the term slug
+            'terms'    => 'europe',      // only posts with term "europe"
+        ),
+    ),
+
+    // 'meta_query' allows filtering by custom fields (post meta).
+    // In this case, we get posts where the custom field "price" is >= 1000.
+    'meta_query'     => array(
+        array(
+            'key'     => 'price',    // the custom field key
+            'value'   => 1000,       // the value we compare against
+            'compare' => '>=',       // comparison operator (greater or equal)
+            'type'    => 'NUMERIC'   // type of the field, numeric comparison
+        ),
+    )
+);
+*/
